@@ -1,0 +1,95 @@
+.Menu-Container{
+    position: absolute;
+    background-color: white;
+    top: 75px;
+    width:400px;
+}
+
+.Menu-Container::before{
+    position:absolute;
+    display:block;
+    content:"";
+    background-color: white;
+    border: 1px white solid;
+    border-top: 1px #cdd0d1 solid;
+    border-left: 1px #cdd0d1 solid;
+    width: 16px;
+    height: 16px;
+    transform: rotate(45deg);
+    left: 70px;
+    top: -9px;
+}
+
+.Menu{
+    margin: 10px;
+    padding: 5px;
+}
+.Categories{
+    padding-left: 0;
+}
+
+.Browse-Categories{
+    vertical-align: top;
+    width: 40%;
+    margin: 0px 5% 0px 5%;
+}
+
+.Browse-Categories h3{
+    margin: 0;
+    font-family: "Source Sans Pro",Arial;
+    color: #4d4d4d;
+    font-weight: bold;
+}
+
+.Browse-SubCategories{
+    padding-left: 0;
+    border-top: 1px solid #cecece;
+}
+.Browse-SubCategories li{
+    display:block !important;
+    margin: 10px;
+}
+
+.Browse-SubCategories a{
+    /*display:block;*/
+    text-decoration: none;
+    color: #2d2d2d;
+    font-size: 14px;
+    font-family: "Source Sans Pro",Arial;
+}
+
+.Browse-SubCategories a:hover{
+    color: #feaa26;
+}
+
+.Breakfast{
+
+}
+
+.Lunch{
+
+}
+
+.Dinner{
+
+}
+
+.Dessert{
+
+}
+
+.Beef{
+
+}
+
+.Chicken{
+
+}
+
+.Pork{
+
+}
+
+.Salmon{
+
+}
