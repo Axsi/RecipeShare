@@ -48,7 +48,7 @@ class RecipeList extends React.Component{
         //if this.props.location.searchResult is not null or undefined then we know a search was submitted by the user
 
         //********************if pathname !== favoritepage? or make the key also searchResult over on favorite page?******
-        if(this.props.location.pathname === "/favoritepage"){
+        if((this.props.location.pathname === "/favoritepage") && (this.state.searchResult.length === 0)){
             console.log("HEHEHEHEE");
             console.log(this.state.searchResult);
             console.log(this.state.propResult);
