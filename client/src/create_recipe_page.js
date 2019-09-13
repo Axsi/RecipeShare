@@ -1,20 +1,21 @@
 import React from 'react';
 import Header from './header_components/header';
-import RegisterForm from './registerform';
+import CreateRecipeForm from './create_recipe_form';
 import './style/homepage.css';
 
-class RegisterPage extends React.Component{
+class CreateRecipePage extends React.Component{
     constructor(props){
         super(props);
     }
+
     render(){
         return(
             <div className="Site-Content">
                 <Header />
-                <RegisterForm />
+                <CreateRecipeForm />
             </div>
         )
     }
 }
 
-export default RegisterPage;
+export default CreateRecipePage;

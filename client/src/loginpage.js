@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './header';
+import Header from './header_components/header';
 import LoginForm from './loginform';
 import './style/homepage.css';
 
@@ -7,6 +7,7 @@ class LoginPage extends React.Component{
     constructor(props){
         super(props);
     }
+
     render(){
         return(
             <div className="Site-Content">

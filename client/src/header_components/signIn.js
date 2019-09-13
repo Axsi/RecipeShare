@@ -1,5 +1,7 @@
 import React from 'react';
-import './style/signIn.css';
+import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
+import '../style/signIn.css';
 
 class SignIn extends React.Component{
     constructor(props){
@@ -8,9 +10,9 @@ class SignIn extends React.Component{
     render(){
         return(
             <li className="Sign-In-Button">
-                <a className="Sign-In" href="">
+                <Link to="/loginpage" className="Sign-In">
                     <span>Sign In</span>
-                </a>
+                </Link>
             </li>
         )
     }

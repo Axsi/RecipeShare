@@ -1,0 +1,38 @@
+.Account-Button{
+    vertical-align: top;
+    margin-top: 7px;
+}
+
+.User-Tab{
+    text-decoration: none;
+    /*background-color:#feaa26;*/
+    font-family: "Source Sans Pro",Arial;
+    display:block;
+    color: #4d4d4d;
+    /*padding: 0px 16px 0px 20px;*/
+    /*height: 49px;*/
+    line-height: 50px;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.Account-User-Name{
+    background-color: #f2f2f2;
+    display: inline-block;
+    width: 134px;
+    text-align: center;
+}
+
+.Account-Chevron-Side{
+    background-color: gray;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+}
+
+.Chevron-Down-Icon-Account{
+    width: 18px;
+    position: relative;
+    top: 4px;
+}

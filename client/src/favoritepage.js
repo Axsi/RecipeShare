@@ -1,20 +1,26 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
 import Header from './header_components/header';
-import RegisterForm from './registerform';
+import RecipeList from './recipelist';
+import './style/favoritepage.css';
 import './style/homepage.css';
 
-class RegisterPage extends React.Component{
+
+class FavoritePage extends React.Component{
     constructor(props){
         super(props);
+
     }
+
     render(){
         return(
             <div className="Site-Content">
                 <Header />
-                <RegisterForm />
+                <RecipeList />
             </div>
         )
     }
 }
 
-export default RegisterPage;
+export default FavoritePage;

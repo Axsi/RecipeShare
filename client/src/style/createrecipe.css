@@ -1,0 +1,263 @@
+.Create-Recipe-Container{
+    background-color: #fafafa;
+    overflow:hidden;
+    font-size: 16px;
+    color: #4a4a4a;
+    font-family: "Source Sans Pro",Arial;
+    height: 100vh;
+}
+
+.Create-Recipe-Form{
+    width: 1150px;
+    margin: 25px auto 0px auto;
+}
+
+.Left-Container{
+    overflow: hidden;
+    width: 380px;
+    float:left;
+    margin-top: 20px;
+}
+
+.Recipe-Photo{
+    width: 240px;
+    height: 180px;
+    text-align: center;
+    border: 2px dashed #e6e6e6;
+    margin-left: 5px;
+}
+
+.Camera-Icon{
+    background-image: url("https://firebasestorage.googleapis.com/v0/b/recipeshare-c27e5.appspot.com/o/icons8-camera-100.png?alt=media&token=bda6d01d-e935-4e0b-ada2-0c22ed622f98");
+    /*background-image: url("../assets/icons8-camera-100.png");*/
+    background-repeat: no-repeat;
+    background-position: center 36px;
+    display:block;
+    background-size: 36%;
+    height: 100%;
+    width:100%;
+    opacity: 0.7;
+    z-index: -1;
+}
+
+.Camera-Icon::after{
+    content:"Add a photo";
+    display:block;
+    margin-top: 7rem;
+    font-weight: 300;
+    /*font-size: 15px;*/
+}
+
+.Camera-Icon:hover{
+    cursor: pointer;
+}
+
+#Photo-Upload{
+    opacity: 0;
+}
+
+.Recipe-Photo-Size{
+    position:relative;
+    top: -30px;
+    font-size: 12px;
+}
+
+.Create-Recipe-Stats{
+    width: 380px;
+    padding-left: 0;
+    float: left;
+    margin-top: 60px;
+}
+
+.Create-Recipe-Stats li{
+    list-style-type: none;
+    float: left;
+    width: 150px;
+}
+
+.PrepTime-Label{
+    margin-left: 5px;
+}
+
+.CookTime-Label{
+    margin-left: 60px;
+}
+
+.Servings-Label{
+    margin: 40px 0px 0px 5px;
+    width: 280px !important;
+}
+
+.PrepTime-Label, .CookTime-Label, .Servings-Label label{
+    /*white-space: nowrap;*/
+}
+
+
+#Prep-Time, #Cook-Time, #Servings{
+    width: 135px;
+    height: 30px;
+    border: 1px solid #e6e6e6;
+    line-height: 24px;
+    font-size: 13px;
+    color: #4a4a4a;
+    font-family: "Source Sans Pro",Arial;
+    padding-left: 10px;
+}
+
+/*#Cook-Time{*/
+
+/*}*/
+
+/*#Servings{*/
+
+/*}*/
+
+
+.Meal-Type-Option{
+    margin: 40px 0px 0px 5px;
+    width: 100px !important;
+}
+
+.Options{
+    background-color: white;
+    border: 1px solid #e6e6e6;
+    /*width: 137px;*/
+    width: 100px;
+    padding: 5px 0px 5px 0px;
+}
+
+.Meal-Type-Title-Container{
+    width: 200px;
+}
+
+.Meal-Type-Title{
+    width: 100px !important;
+    margin: 0;
+    display: initial !important;
+    padding: 0 !important;
+}
+
+.Meal-Type-Option label{
+    display: block;
+    padding: 3px 0px 3px 0px;
+}
+
+#Breakfast-Option{
+
+}
+
+#Lunch-Option{
+
+}
+
+#Dinner-Option{
+
+}
+
+#Dessert-Option{
+
+}
+
+.Right-Container{
+    overflow: hidden;
+    width: 770px;
+}
+
+.Create-Recipe-Info{
+    width: 770px;
+    padding-left: 0;
+    margin-left: 50px;
+    /*float: left;*/
+}
+
+.Create-Recipe-Info li{
+    list-style-type: none;
+    margin-bottom: 20px;
+}
+
+.Info-Label{
+
+}
+
+#Recipe-Title, #Recipe-Description, #Recipe-Ingredients, #Recipe-Directions{
+    border: 1px solid #e6e6e6;
+    width: 92%;
+    box-shadow: none;
+    line-height: 24px;
+    font-size: 13px;
+    color: #4a4a4a;
+    font-family: "Source Sans Pro",Arial;
+}
+
+#Recipe-Title{
+    height: 30px;
+    padding-left: 10px;
+}
+
+#Recipe-Description{
+    height: 70px;
+    resize:vertical;
+    padding: 5px 0px 0px 10px;
+}
+
+#Recipe-Ingredients{
+    height: 250px;
+    resize:vertical;
+    padding: 5px 0px 0px 10px;
+}
+
+#Recipe-Ingredients::placeholder, #Recipe-Directions::placeholder{
+    color: gray;
+    font-size: 14px;
+}
+
+#Recipe-Directions{
+    height: 150px;
+    resize:vertical;
+    padding: 5px 0px 0px 10px;
+}
+
+.Submit-Container{
+    float: right;
+    width: 721px;
+}
+
+.Submit-Recipe-Button{
+    margin-top: 50px;
+    /*float: right;*/
+    background-color: #feaa26;
+    font-family: "Source Sans Pro",Arial;
+    color: white;
+    border: 0;
+    padding: 20px;
+    width: 300px;
+    font-size: 15px;
+    line-height: 10px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.Submit-Recipe-Button:hover{
+    background-color: #ed9702;
+}
+
+.Cancel{
+    text-decoration: none;
+    background-color: gray;
+    color: white;
+    padding: 16.5px 60px 16.5px 60px;
+    /*display: block;*/
+    line-height: 10px;
+    text-align: center;
+}
+
+.Cancel:hover{
+    opacity: .6;
+}
+
+.Requirement{
+    color: red;
+    font-style: italic;
+    font-size: 13px;
+}
+

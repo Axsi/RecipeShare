@@ -1,0 +1,42 @@
+.User-Menu-Container{
+    position: absolute;
+    background-color: white;
+    top: 74px;
+    width:400px;
+    border: 1px #e6e6e6 solid;
+}
+
+.User-Menu-Container::before{
+    position:absolute;
+    display:block;
+    content:"";
+    background-color: white;
+    border: 1px white solid;
+    border-top: 1px #cdd0d1 solid;
+    border-left: 1px #cdd0d1 solid;
+    width: 16px;
+    height: 16px;
+    transform: rotate(45deg);
+    left: 70px;
+    top: -9px;
+}
+.User-Menu{
+    margin: 10px;
+    padding: 5px;
+}
+
+.User-Categories{
+    padding-left: 0;
+}
+
+.User-Categories li{
+  display: block !important;
+}
+
+.Create-Recipe-li{
+
+}
+
+.Create-Recipe{
+
+}

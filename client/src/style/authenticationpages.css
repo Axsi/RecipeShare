@@ -75,3 +75,19 @@
 .Create-User span{
     color: #666;
 }
+
+.Message-Container{
+    width: 450px;
+    height: 20px;
+    margin: 0px auto 0px auto;
+}
+
+.Message{
+    color: red;
+}
+
+.Image-Message{
+    width: 380px;
+    color: red;
+    margin: 0px !important;
+}

@@ -1,0 +1,133 @@
+.Recipe-Page-Container{
+    background-color: white;
+    overflow: hidden;
+}
+
+.Recipe-Summary-Container{
+    display:flex;
+    font-family:"Source Sans Pro",Arial;
+}
+
+.Recipe-Summary{
+    width: 50%;
+    padding: 25px;
+    margin: 0px 20px 0px 20px;
+}
+
+.Recipe-Summary p{
+    text-align: center;
+}
+
+.Title-Container{
+    display:flex;
+    justify-content: center;
+}
+
+.Recipe-Page-Title{
+    margin: 0px 7px 0px 0px;
+    text-align: center;
+    color:#2d2d2d;
+    font-size: 25px;
+
+}
+
+.Add-To-Favorites{
+    max-height: 20px;
+    max-width: 20px;
+}
+
+.Add-To-Favorites:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.Recipe-By{
+    font-size: 14px;
+    color: gray;
+}
+
+.Recipe-Page-Creator{
+    font-size: 16px;
+    color:#2d2d2d;
+}
+
+.Recipe-Page-Description{
+    font-size: 15px;
+    color:#2d2d2d
+}
+
+.Recipe-Image-Container{
+    max-height: 400px;
+    max-width: 545px;
+}
+
+.Recipe-Page-Image{
+    height: 100%;
+    width:100%;
+}
+
+.Recipe-Ingredients-Container{
+    font-family: "Source Sans Pro",Arial;
+}
+
+.Recipe-Section-Title{
+    border-bottom: 1px solid #e6e6e6;
+    color: #5b5b5b;
+    font-size: 22px;
+    font-weight: normal;
+    padding: 10px;
+    margin: 20px 20px 0px 20px;
+}
+
+.Recipe-Section-Text{
+    color: #2d2d2d;
+    font-size: 15px;
+    padding: 10px;
+    margin: 5px 10px 0px 10px;
+}
+
+#Recipe-Page-Directions{
+    border-bottom: 1px solid #e6e6e6;
+    margin-bottom: 30px;
+}
+
+.Recipe-Section-li{
+    list-style:none;
+    margin: 0px 0px 30px 18px;
+}
+
+.Recipe-Directions-Container{
+    font-family: "Source Sans Pro",Arial;
+}
+
+.Information-Tab{
+    list-style: none;
+    width: 700px;
+    height: 50px;
+    margin: 0 20px 20px 20px;
+    padding-left: 20px;
+}
+
+.Information-Tab li{
+    display: inline;
+    text-align: center;
+}
+
+.Info-Tab-Label{
+    margin: 0 0 7px 0;
+    color: #999;
+}
+
+.Info-Tab-PrepTime, .Info-Tab-CookTime{
+    float: left;
+    margin-right: 30px;
+    border-right: 1px solid #e6e6e6;
+    padding-right: 20px;
+    height: 90%;
+}
+
+.Info-Tab-Servings{
+    float: left;
+    margin-right: 30px;
+    height: 90%;
+}

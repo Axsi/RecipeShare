@@ -1,5 +1,6 @@
 import React from 'react';
-import './style/menu.css';
+import '../style/menu.css';
+// import BrowseMenu from './browsemenu';
 import MealType from './mealtype';
 import Ingredients from './ingredients';
 
