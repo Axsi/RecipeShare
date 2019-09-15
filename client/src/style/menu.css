@@ -3,8 +3,8 @@
     background-color: white;
     top: 74px;
     width:400px;
-    z-index: 3;
     border: 1px #e6e6e6 solid;
+    z-index: 3;
 }
 
 .Menu-Container::before{

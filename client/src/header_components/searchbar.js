@@ -47,8 +47,12 @@ class SearchBar extends React.Component{
                     console.log(this.props.location.username);
                     console.log(this.props.location.userID);
                     //this push is not doing anything, maybe try link? redirect?
-                    this.props.history.push({pathname:"/", searchResult: data.rows,
-                        username: this.props.location.username, userID: this.props.location.userID});
+                    this.props.history.push({
+                        pathname:"/", searchResult: data.rows,
+                        username: this.props.location.username,
+                        userID: this.props.location.userID,
+                        searchInput: this.state.searchInput
+                    });
                 }).catch(err=>{
                     console.log("error for searchbar's handleSubmit fetch");
                     console.log(err);

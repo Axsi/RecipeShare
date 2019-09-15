@@ -5,9 +5,14 @@
     overflow:hidden;
 }
 
-/*.Search-Results-Container{*/
-
-/*}*/
+.Recipe-List-Subject-Title{
+    width: 200px;
+    text-align: center;
+    color: #5b5b5b;
+    font-weight: normal;
+    margin: 20px 0 15px 10px;
+    font-size:20px;
+}
 
 #Grid-Selection{
     display: grid;
@@ -79,4 +84,8 @@
 
 .By{
     color: #7f7f7f;
+}
+
+.TEST1{
+
 }

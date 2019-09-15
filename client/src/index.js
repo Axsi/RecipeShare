@@ -8,6 +8,8 @@ import RegisterPage from './registerpage';
 import FavoritePage from './favoritepage';
 import CreateRecipePage from './create_recipe_page';
 import RecipePage from './recipepage';
+import CreatedPage from './createdpage'
+import EditPage from './editpage';
 import * as serviceWorker from './serviceWorker';
 import PrivateRoute from './privateroute';
 
@@ -21,6 +23,8 @@ const routing = (
             <Route path="/recipepage/:recipeid" component={RecipePage}/>
             <PrivateRoute path="/favoritepage" component={FavoritePage}/>
             <PrivateRoute path="/createrecipe" component={CreateRecipePage}/>
+            <PrivateRoute path="/createdpage" component={CreatedPage}/>
+            <PrivateRoute path="/editpage" component={EditPage}/>
             {/*<Route path="/" component={CreateRecipePage}/>*/}
         </div>
     </Router>

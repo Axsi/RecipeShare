@@ -16,11 +16,13 @@
 
 .Recipe-Summary p{
     text-align: center;
+    margin-right: 45px;
 }
 
 .Title-Container{
     display:flex;
     justify-content: center;
+    width: 100%;
 }
 
 .Recipe-Page-Title{
@@ -28,17 +30,25 @@
     text-align: center;
     color:#2d2d2d;
     font-size: 25px;
+    width: 600px;
 
 }
 
-.Add-To-Favorites{
+.Registered-User-Options{
     max-height: 20px;
     max-width: 20px;
 }
 
-.Add-To-Favorites:hover{
+.Registered-User-Options:hover{
     opacity: 0.8;
     cursor: pointer;
+}
+
+#Edit-Your-Recipe{
+    float: right;
+    max-height: 17px !important;
+    max-width: 17px !important;
+    margin: 2px 0px 0px 3px;
 }
 
 .Recipe-By{

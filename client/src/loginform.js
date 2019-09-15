@@ -69,12 +69,12 @@ class LoginForm extends React.Component{
                         </h1>
                         <form className="User-Info-Form" onSubmit={this.handleSubmit}>
                             <div className="Form-Group">
-                                <input id="User-Name" type="text" name="username" placeholder="Username"
+                                <input id="User-Name" type="text" name="username" placeholder="Username" maxLength="30"
                                        onChange={this.handleChange}/>
                             </div>
                             <div className="Form-Group">
                                 <input id="User-Password" type="password" name="password" placeholder="Password"
-                                       onChange={this.handleChange}/>
+                                       maxLength="30" onChange={this.handleChange}/>
                             </div>
                             <input className="Submit-Button" type="submit" value="Sign-In"/>
                             <Link to="/registerpage" className="Create-User">

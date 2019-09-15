@@ -94,11 +94,11 @@ class RegisterForm extends React.Component{
                         <form className="User-Info-Form" onSubmit={this.handleSubmit}>
                             <div className="Form-Group">
                                 <input id="Register-User-Name" type="text" name="username" placeholder="Username"
-                                       onChange={this.handleChange}/>
+                                       maxLength="30" onChange={this.handleChange}/>
                             </div>
                             <div className="Form-Group">
                                 <input id="Register-User-Password" type="password" name="password" placeholder="Password"
-                                       onChange={this.handleChange}/>
+                                       maxLength="30" onChange={this.handleChange}/>
                             </div>
                             <input className="Register-Button" type="submit" value="Create my account"/>
                         </form>

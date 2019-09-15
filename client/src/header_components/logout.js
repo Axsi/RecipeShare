@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link, withRouter } from 'react-router-dom';
 import '../style/logout.css';
+import'../style/user_features_menu.css'
 import utensils from "../assets/utensils.png";
 
 class LogOut extends React.Component{
@@ -24,7 +25,7 @@ class LogOut extends React.Component{
 
     render(){
         return(
-            <li className="LogOut-Button">
+            <li>
                 <a className="LogOut" href="" onClick={this.handleSignOut}>Sign out</a>
             </li>
         )

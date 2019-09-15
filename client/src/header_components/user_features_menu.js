@@ -17,7 +17,7 @@ class UserFeaturesMenu extends React.Component{
 
         this.setWrapperRef = this.setWrapperRef.bind(this);
         this.handleClickOutside = this.handleClickOutside.bind(this);
-        this.goCreateRecipe = this.goCreateRecipe.bind(this);
+        // this.goCreateRecipe = this.goCreateRecipe.bind(this);
     }
 
     componentDidMount() {
@@ -47,19 +47,39 @@ class UserFeaturesMenu extends React.Component{
             this.props.onOutsideClick(false);
         }
     }
-    goCreateRecipe(event){
-        event.preventDefault();
-        console.log(this.props.username);
-        this.props.history.push({pathname:"/createrecipe", username:this.props.username, userID:this.props.userID});
-    }
+    // goCreateRecipe(event){
+    //     event.preventDefault();
+    //     console.log(this.props.username);
+    //     this.props.history.push({pathname:"/createrecipe", username:this.props.username, userID:this.props.userID});
+    // }
     render(){
         return(
             <div className="User-Menu-Container" ref={this.setWrapperRef}>
                 <section className="User-Menu">
                     <ul className="User-Categories">
-                        <li className="Create-Recipe-li">
-                            <a className="Create-Recipe" href="" onClick={this.goCreateRecipe}>Create Recipe</a>
-                            {/*<Link to="/createrecipe" className="Create-Recipe">Create new recipe</Link>*/}
+                        <li>
+                            <Link to={{
+                                pathname:"/createrecipe",
+                                username:this.props.username,
+                                userID:this.props.userID
+                            }}
+                            >Create Recipe</Link>
+                        </li>
+                        <li>
+                            <Link to={{
+                                pathname:"/createdpage",
+                                username:this.props.location.username,
+                                userID:this.props.location.userID
+                            }}
+                            >Your Recipes</Link>
+                        </li>
+                        <li>
+                            <Link to={{
+                                pathname:"/favoritepage",
+                                username: this.props.location.username,
+                                userID: this.props.location.userID
+                            }}
+                            >Favorite Recipes</Link>
                         </li>
                         <LogOut />
                     </ul>
