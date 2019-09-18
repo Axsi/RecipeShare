@@ -59,11 +59,11 @@ app.use(bodyParser.json());
 // app.set('views', __dirname + '/client/src');
 // app.set('view engine', 'ejs');
 //
-// app.use(express.static(path.join(__dirname, 'client', 'public')));
-
-app.get('/*', function(req, res){
+app.use(express.static(path.join(__dirname, 'client/build')));
+//
+app.get('*', function(req, res){
     // res.redirect('/index.html');
-    res.sendFile(path.join(__dirname, 'client', 'public', 'index.html'), function(err){
+    res.sendFile(path.join(__dirname+'/client/build/index.html'), function(err){
         if(err){
             res.status(500).send(err)
         }
@@ -207,7 +207,7 @@ app.use('/', recipepage);
 app.use('/', favorites);
 app.use('/', creations);
 
-app.listen(process.env.PORT|| 8100, ()=> {
+app.listen(process.env.PORT|| 5000, ()=> {
     console.log("Server running on " + process.env.PORT)
 });
 
