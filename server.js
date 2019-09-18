@@ -17,7 +17,7 @@ const pool = db.pool;
 
 const firebase = require("firebase/app");
 const admin = require("firebase-admin");
-const  serviceAccount = require(process.env.GOOGLE_APPLICATION_CREDENTIALS);
+const  serviceAccount = require('D:\Projects\RecipeShare\service-account-file.json');
 const Multer = require('multer');
 
 const firebaseConfig = {
