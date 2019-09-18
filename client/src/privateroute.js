@@ -1,7 +1,6 @@
 import React from 'react';
 import {Component} from 'react';
-import ReactDOM from 'react-dom';
-import {Route, Redirect, withRouter} from 'react-router-dom';
+import {Route, Redirect} from 'react-router-dom';
 
 
 function PrivateRoute({component: Component, ...rest}) {
@@ -17,8 +16,8 @@ function PrivateRoute({component: Component, ...rest}) {
         );
 }
 function userAuth(props){
-    console.log(props);
-    console.log(sessionStorage);
+    // console.log(props);
+    // console.log(sessionStorage);
     return (sessionStorage.username !== '') && (sessionStorage.username !== undefined) &&
         (sessionStorage.username !== null);
 

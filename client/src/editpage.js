@@ -7,10 +7,6 @@ class EditPage extends React.Component{
     constructor(props){
         super(props);
     }
-    componentDidMount() {
-        console.log("You are now within the editpage");
-    }
-
     render(){
         return(
             <div className="Site-Content">

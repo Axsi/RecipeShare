@@ -48,7 +48,6 @@ class RecipeList extends React.Component{
 
     renderFavorites(){
         let userID = sessionStorage.userID;
-        console.log(userID);
         fetch('/getFavorites/' + userID)
             .then(response=> response.json())
             .then(data=>{

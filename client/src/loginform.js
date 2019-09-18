@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import MessageBox from './messagebox';
 import { Link, withRouter } from 'react-router-dom';
 import './style/authenticationpages.css';

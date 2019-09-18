@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { withRouter } from 'react-router-dom';
 import '../style/logout.css';
 import'../style/user_features_menu.css'
@@ -14,6 +13,8 @@ class LogOut extends React.Component{
         event.preventDefault();
         fetch('/logout')
             .then(data=>{
+                sessionStorage.removeItem('username');
+                sessionStorage.removeItem('userID');
                 this.props.history.push({pathname: "/", data: 'guest'});
             })
     }
@@ -22,7 +23,7 @@ class LogOut extends React.Component{
     render(){
         return(
             <li id="LogOut-Button">
-                <a className="LogOut" href="" onClick={this.handleSignOut}>Sign out</a>
+                <a className="LogOut" onClick={this.handleSignOut}>Sign out</a>
             </li>
         )
     }

@@ -1,13 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Link, withRouter } from 'react-router-dom';
 import '../style/favorite.css';
 
 class Favorite extends React.Component{
-    constructor(props){
-        super(props);
 
-    }
     render(){
         return(
             <li className="Favorite-Button">

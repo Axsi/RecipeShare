@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import './style/createrecipe.css';
 import MessageBox from './messagebox';
-import Header from "./header_components/header";
 
 
 class CreateRecipeForm extends React.Component{
@@ -44,7 +43,6 @@ class CreateRecipeForm extends React.Component{
     }
 
     componentDidMount() {
-        console.log(this.props.location.pathname);
         fetch('/authenticate')
             .then(response=> response.json())
             .then(data=>{
@@ -63,7 +61,7 @@ class CreateRecipeForm extends React.Component{
                             RecipeDescription: this.state.recipeDetails.description,
                             RecipeIngredients: this.state.recipeDetails.ingredients.join('**'),
                             RecipeDirections: this.state.recipeDetails.directions.join('**')
-                        }, function(){ console.log(this.state)});
+                        });
                     }
                 }else{
                     this.props.history.push('/loginpage');
@@ -148,7 +146,7 @@ class CreateRecipeForm extends React.Component{
                     this.setState({
                         PhotoUpload: photo,
                         ImageWarning:''
-                    }, ()=>console.log(this.state.PhotoUpload));
+                    });
                 }
             }
         }else{
