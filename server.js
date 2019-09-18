@@ -59,16 +59,16 @@ app.use(bodyParser.json());
 // app.set('views', __dirname + '/client/src');
 // app.set('view engine', 'ejs');
 //
-app.use(express.static(path.join(__dirname, 'client/build')));
-//
-app.get('*', function(req, res){
-    // res.redirect('/index.html');
-    res.sendFile(path.join(__dirname+'/client/build/index.html'), function(err){
-        if(err){
-            res.status(500).send(err)
-        }
-    })
-});
+// app.use(express.static(path.join(__dirname, 'client/build')));
+// //
+// app.get('*', function(req, res){
+//     // res.redirect('/index.html');
+//     res.sendFile(path.join(__dirname+'/client/build/index.html'), function(err){
+//         if(err){
+//             res.status(500).send(err)
+//         }
+//     })
+// });
 
 app.get('/users', db.getUsers);
 
