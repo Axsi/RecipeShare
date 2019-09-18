@@ -12,6 +12,7 @@ const session = require('express-session')({
 });
 const db = require('./db');
 const pool = db.pool;
+const path=require('path');
 
 //========= Firebase ==============
 
@@ -55,6 +56,17 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParser.json());
 
+// app.set('views', __dirname + '/client/src');
+// app.set('view engine', 'ejs');
+//
+app.get('/*', function(req, res){
+    // res.redirect('/');
+    res.sendFile(path.join(__dirname, 'build', 'index.html'), function(err){
+        if(err){
+            res.status(500).send(err)
+        }
+    })
+});
 
 app.get('/users', db.getUsers);
 
