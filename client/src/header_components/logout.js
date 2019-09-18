@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import '../style/logout.css';
 import'../style/user_features_menu.css'
-import utensils from "../assets/utensils.png";
 
 class LogOut extends React.Component{
     constructor(props){
@@ -13,11 +12,8 @@ class LogOut extends React.Component{
 
     handleSignOut(event){
         event.preventDefault();
-        console.log("logout button is clicked");
         fetch('/logout')
             .then(data=>{
-                console.log("logout should be successful");
-                console.log(data);
                 this.props.history.push({pathname: "/", data: 'guest'});
             })
     }
@@ -25,7 +21,7 @@ class LogOut extends React.Component{
 
     render(){
         return(
-            <li>
+            <li id="LogOut-Button">
                 <a className="LogOut" href="" onClick={this.handleSignOut}>Sign out</a>
             </li>
         )

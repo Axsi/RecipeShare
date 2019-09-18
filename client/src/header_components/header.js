@@ -1,14 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link, withRouter } from 'react-router-dom';
-import Browse from './browse';
 import SearchBar from './searchbar';
 import Favorite from './favorite';
 import SignIn from './signIn';
-import UserFeatures from './user_features';
+import MealType from './mealtype';
+import Ingredients from './ingredients';
+import LogOut from './logout';
 import '../style/header.css';
-// import utensils from '../assets/utensils.png';
+import '../style/browse.css';
+import '../style/user_features.css';
+import '../style/menu.css';
+import '../style/user_features_menu.css';
 import Can from '../can';
+import menuButtons from './menubuttons';
+import menus from './menus';
 
 class Header extends React.Component{
     constructor(props){
@@ -19,91 +25,126 @@ class Header extends React.Component{
             username:'',
             userID: null
         };
-        this.goHomePage = this.goHomePage.bind(this);
     }
 
     componentDidMount() {
-        console.log("what is role? " + this.state.role);
-        console.log(this.state.role);
-        console.log(this.props.location.username);
-        console.log(this.props.location.userID);
         fetch('/authenticate')
             .then(response=> response.json())
             .then(data=>{
-                // console.log(data.authenticate);
-                // console.log(data.username);
-                console.log('if fetch had no errors it would go here');
-
-                // this.setState({role:'guest'});
-
                 if(data){
-                    // console.log("jsut got true for data");
-                    // console.log(this.state.username);
-                    // console.log(this.state.userID);
-                    //on initially loadup of header we setup the states here
-                    this.setState({role: 'user', username: this.props.location.username,
-                        userID: this.props.location.userID});
-                    // console.log("lets find out what the username is for location and state");
-                    console.log("should turn role into user here");
-                    // console.log(this.state.username);
-                    // console.log(this.state.userID);
-                    // console.log(this.props.location.username);
-                    // console.log(this.props.location.userID);
-                    // console.log("SEPERATE");
-                    // console.log(this.props.history);
-                    // console.log(this.props.location);
+                    this.setState({role: 'user', username: sessionStorage.username,
+                        userID: sessionStorage.userID});
                 }else{
-                    console.log("should turn role into guest here");
                     this.setState({role:'guest'});
                 }
-                console.log(this.state.role);
             }).catch(error=>{
-                console.log('Error: ' + error);
-            })
+            console.log('Error: ' + error);
+        })
     }
     //when logout is clicked this.props.location.data is compared to the current this.state.role, if different
     //the this.state.role is changed. This also changes the rendering of user-button to sign-in button
     componentDidUpdate() {
-        console.log("are we inside componentdidupdate for header?");
-        // console.log(this.state.role);
-        // console.log(this.props.location);
-        // console.log("undefined below is cause logout");
-        // console.log(this.props.location.data);
         if(this.props.location.data != null && this.props.location.data !== this.state.role){
-            console.log("componentdidupdate do we see inside the conditiponal?");
             this.setState({role: this.props.location.data})
         }
-        //on subsequent loads of header we update and setup the states here
-    }
-
-    goHomePage(event){
-        event.preventDefault();
-        console.log("goHomePage");
-        // console.log(this.props.location.username);
-        // console.log(this.props.location.userID);
-        this.props.history.push({pathname:"/", username:this.props.location.username, userID:this.props.location.userID});
     }
 
     render(){
-        // console.log("are we in render?");
-        // console.log(this.props.location.data);
+        const browseComp = (props)=>{
+            return (
+                <li className="Browse-Button">
+                    <a className="Browse-Tab" onClick={props.showMenu}>
+                        <span>BROWSE</span>
+                        <span> </span>
+                        <img className="Chevron-Down-Icon-Browse" src='https://firebasestorage.googleapis.com/v0/b/recipeshare-c27e5.appspot.com/o/icons8-chevron-down-26_browse.png?alt=media&token=aa6718c2-d6d7-487f-91e7-ee79eeb510d9'/>
+                    </a>
+                    {props.menuVisible ? <BrowseMenu onOutsideClick={props.hideMenu}/> : null}
+                </li>
+            )
+        };
+        const userComp = (props)=>{
+            return (
+                <li className="Account-Button">
+                    <a className="User-Tab" onClick={props.showMenu}>
+                        <div className="Account-User-Name">{this.state.username}</div>
+                        <span className="Account-Chevron-Side">
+                        <img className="Chevron-Down-Icon-Account" src='https://firebasestorage.googleapis.com/v0/b/recipeshare-c27e5.appspot.com/o/icons8-chevron-down-26.png?alt=media&token=9d3ad168-6235-4d8b-80f6-debbbba9ac5b'/>
+                    </span>
+                    </a>
+                    {props.menuVisible ? <UserMenu onOutsideClick={props.hideMenu}/> : null}
+                </li>
+            )
+        };
+        const browseMenuComp = (props)=>{
+            return(
+                <div className="Menu-Container" ref={props.setWrapperRef}>
+                    <section className="Menu">
+                        <ul className="Categories">
+                            <MealType />
+                            <Ingredients />
+                        </ul>
+                    </section>
+                </div>
+            )
+        };
+        const userMenuComp = (props)=>{
+            return(
+                <div className="User-Menu-Container" ref={props.setWrapperRef}>
+                    <section className="User-Menu">
+                        <ul className="User-Categories">
+                            <li>
+                                <Link className="Create-Recipe-link" to={{
+                                    pathname:"/createrecipe",
+                                    username:this.state.username,
+                                    userID:this.state.userID
+                                }}
+                                >Create Recipe</Link>
+                            </li>
+                            <li>
+                                <Link className="Created-link" to={{
+                                    pathname:"/createdpage",
+                                    username:this.state.username,
+                                    userID:this.state.userID
+                                }}
+                                >Your Recipes</Link>
+                            </li>
+                            <li>
+                                <Link className="Favorites-link" to={{
+                                    pathname:"/favoritepage",
+                                    username: this.state.username,
+                                    userID: this.state.userID
+                                }}
+                                >Favorite Recipes</Link>
+                            </li>
+                            <LogOut />
+                        </ul>
+                    </section>
+                </div>
+            )
+        };
+        const Browse = menuButtons(browseComp);
+        const UserButton = menuButtons(userComp);
+        const BrowseMenu = menus(browseMenuComp);
+        const UserMenu = menus(userMenuComp);
         return(
             <div className="Header-Container">
-                {/*change the can and insert the role state*/}
                 <Can
                     role={this.state.role}
                     perform="private-home-page:visit"
                     yes={()=> (
                         <ul className="Header-Nav">
                             <li className="Logo-Tab">
-                                <a className="Title" href="" onClick={this.goHomePage}>
+                                <Link to={{
+                                    pathname:"/",
+                                    username:this.state.username,
+                                    userID:this.state.userID}} className="Title">
                                     <img className="Logo-Img" src='https://firebasestorage.googleapis.com/v0/b/recipeshare-c27e5.appspot.com/o/utensils.png?alt=media&token=c08cf7d2-264e-40e7-a89f-973a6289c0a6'/>
-                                </a>
+                                </Link>
                             </li>
                             <Browse />
                             <SearchBar />
                             <Favorite />
-                            <UserFeatures username={this.state.username} userID={this.state.userID}/>
+                            <UserButton />
                         </ul>
                     )}
                 />
@@ -123,10 +164,9 @@ class Header extends React.Component{
                             <SignIn />
                         </ul>
                     )}
-                    />
+                />
             </div>
         )
     }
 }
-
 export default withRouter(Header);

@@ -2,7 +2,7 @@
     position: absolute;
     background-color: white;
     top: 74px;
-    width:400px;
+    width:250px;
     border: 1px #e6e6e6 solid;
 }
 
@@ -30,13 +30,25 @@
 }
 
 .User-Categories li{
-  display: block !important;
+    display: block !important;
+    margin-bottom: 10px;
 }
 
-/*.Create-Recipe-li{*/
+.Create-Recipe-link, .Created-link, .Favorites-link{
+    text-decoration: none;
+    color: #2d2d2d;
+    font-size: 14px;
+    font-family: "Source Sans Pro",Arial;
+}
+
+.Create-Recipe-link:hover, .Created-link:hover, .Favorites-link:hover{
+    color: #feaa26;
+}
+
+/*.Created-link{*/
 
 /*}*/
 
-/*.Create-Recipe{*/
+/*.Favorites-link{*/
 
 /*}*/

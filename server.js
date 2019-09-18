@@ -37,9 +37,6 @@ const bucket = admin.storage().bucket();
 
 const multer = Multer({
     storage: Multer.memoryStorage()
-    // limits: {
-    //     fileSize: 5 * 960 * 960
-    // }
 });
 
 //=============================
@@ -48,7 +45,6 @@ const search = require('./routes/search');
 const recipepage = require('./routes/recipepage');
 const favorites = require('./routes/favorites');
 const creations = require('./routes/createdpage');
-// const editpage = require('./routes/editpage');
 
 app.use(session);
 //initialize returns a middle which must be called at the start of connect/express based apps
@@ -63,13 +59,8 @@ app.use(bodyParser.json());
 app.get('/users', db.getUsers);
 
 app.get('/authenticate', function(req, res, next){
-    console.log("what is authenticate? " + req.user);
-    // console.log(req);
-    // console.log(req.user['rows'][0].username);
-// , username: req.user['rows'][0].username
-//     if(req.user){
-        res.json(req.isAuthenticated());
-    // }
+    res.json(req.isAuthenticated());
+    // res.json({authenticated: req.isAuthenticated()});
 });
 
 app.post('/login', function(req, res, next){
@@ -77,65 +68,38 @@ app.post('/login', function(req, res, next){
         if(err){
             return next(err);
         }
-        console.log("what is user?");
-        // console.log(user);
         if(user != false){
             req.logIn(user, function(err){
                 if(err){
                     return next(err);
                 }
-                console.log("alright we are in login post, lets see what this is");
-                // console.log(req.user.rows[0].username);
-                // console.log(req.user.rows[0]);
-                // console.log(req.user.rows[0].accountid);
+                //set userID in experss-session cookie here
+                // req.session['userid'] = req.user.rows[0].accountid;
+                // req.session['username'] = req.user.rows[0].username;
                 res.json({url: "/" , username: req.user.rows[0].username, userID: req.user.rows[0].accountid});
             });
         }else{
-            console.log("User doesnt exist?");
             res.status(401).json({message: "The username or password given is incorrect"});
-            // res.status(401).send("User entered does not exist");
         }
-        console.log("does this still run even when user does not exist?");
-        //req.logIn generates a session for a user
-        // req.logIn(user, function(err){
-        //     if(err){
-        //         return next(err);
-        //     }
-        //     // currentUser = user.username;
-        //     // console.log("alright we are in login post, lets see what this is");
-        //     // console.log(req.user.rows[0].username);
-        //     res.json({url: "/" , username: req.user.rows[0].username });
-        // })
     })(req, res, next);
 });
 
 app.get('/logout', function(req, res, next){
-    console.log("do we go to server logout?");
     req.session.destroy();
     req.logout();
     res.redirect('/');
 });
 
 app.post('/createRecipe', multer.single('file'),checkAuthentication, function(req, res, next){
-    console.log("within createRecipe serverSide");
-    // console.log(req.body);
-    // console.log(bucket.name);
     let formBody = req.body;
-    console.log("DOES FORMBODY SHOW UP?");
-    console.log(formBody);
     let file = req.file;
 
     let token = uuid;
     let nameHash = crypto.randomBytes(20).toString('hex');
     let bucketFile = bucket.file(nameHash);
-    console.log(token);
-
     bucketFile
         .save(Buffer.from(file.buffer), {metadata: { metadata: {firebaseStorageDownloadTokens: token}}})
         .then(()=>{
-            console.log("inside bucketFile...");
-            //IN regards to UUID the first submit takes the longest and the others are quick this is because UUID is not generating different tokens!!!!!!
-            // console.log(bucketFile.metadata.metadata.firebaseStorageDownloadTokens);
             res.status(200).json({
                 status: 'success',
                 data: Object.assign({}, bucketFile.metadata
@@ -143,132 +107,65 @@ app.post('/createRecipe', multer.single('file'),checkAuthentication, function(re
             })
         })
         .then(()=>{
-            console.log("whats metadata?");
-
             let imageUrl = 'https://firebasestorage.googleapis.com/v0/b/'+bucketFile.metadata.bucket+'/o/'
                 +encodeURIComponent(bucketFile.metadata.name)+'?alt=media&token='+
                 bucketFile.metadata.metadata.firebaseStorageDownloadTokens;
 
             storeForm(formBody, imageUrl)
                 .then(response=>{
-                    console.log("adding form data was successful");
+                    // console.log("adding form data was successful");
                     // console.log(response);
 
                     //res was sent already in the first .then so you are now getting an error when trying to send another
                     // res.status(200).json({status: 'upload to database was successful'});
                 }).catch(error=>{
-                    console.log("adding form data was not successful");
-                    console.log(error);
-                    res.status(500).json({
-                        status:'error',
-                        errors: error,
-                    })
+                console.log(error);
+                res.status(500).json({
+                    status:'error',
+                    errors: error,
                 })
-        }).catch(err=>{
-            console.log("error in bucketFile...");
-            console.log(err);
-            res.status(500).json({
-                status:'error',
-                errors: err,
             })
+        }).catch(err=>{
+        console.log(err);
+        res.status(500).json({
+            status:'error',
+            errors: err,
         })
-    // setupImageFirebase(file, res)
-    //     .then((bucketFile)=>{
-    //         console.log("whats metadata?");
-    //
-    //         let imageUrl = 'https://firebasestorage.googleapis.com/v0/b/'+bucketFile.metadata.bucket+'/o/'
-    //             +encodeURIComponent(bucketFile.metadata.name)+'?alt=media&token='+
-    //             bucketFile.metadata.metadata.firebaseStorageDownloadTokens;
-    //
-    //         storeForm(formBody, imageUrl)
-    //             .then(response=>{
-    //                 console.log("adding form data was successful");
-    //                 // console.log(response);
-    //
-    //                 //res was sent already in the first .then so you are now getting an error when trying to send another
-    //                 // res.status(200).json({status: 'upload to database was successful'});
-    //             })
-    //             .catch(error=>{
-    //                 console.log("adding form data was not successful");
-    //                 console.log(error);
-    //                 res.status(500).json({
-    //                     status:'error',
-    //                     errors: error,
-    //                 })
-    //             })
-    //     }).catch(err=>{
-    //     console.log("error in bucketFile...");
-    //     console.log(err);
-    //     res.status(500).json({
-    //         status:'error',
-    //         errors: err,
-    //     })
-    // })
-
+    })
 });
 
 app.put('/editPage', multer.single('file'), function(req, res){
-    console.log("Inside /editRecipe router.put");
-    console.log(req.body);
     let formBody = req.body;
     let imageUrl = '';
-    console.log("what is req.file?");
-    console.log(req.file);
     if(req.file !== undefined){
-        console.log("DOES FORMBODY SHOW UP?");
-        console.log(formBody);
         let file = req.file;
 
         let token = uuid;
         let nameHash = crypto.randomBytes(20).toString('hex');
         let bucketFile = bucket.file(nameHash);
-        console.log(token);
 
         bucketFile
             .save(Buffer.from(file.buffer), {metadata: { metadata: {firebaseStorageDownloadTokens: token}}})
+            // .then(()=>{
+            //     console.log("inside bucketFile...");
+            // })
             .then(()=>{
-                console.log("inside bucketFile...");
-                //IN regards to UUID the first submit takes the longest and the others are quick this is because UUID is not generating different tokens!!!!!!
-                // console.log(bucketFile.metadata.metadata.firebaseStorageDownloadTokens);
-                // res.status(200).json({
-                //     status: 'success',
-                //     data: Object.assign({}, bucketFile.metadata
-                //     )
-                // })
-            })
-            .then(()=>{
-                console.log("whats metadata?");
-
                 imageUrl = 'https://firebasestorage.googleapis.com/v0/b/'+bucketFile.metadata.bucket+'/o/'
                     +encodeURIComponent(bucketFile.metadata.name)+'?alt=media&token='+
                     bucketFile.metadata.metadata.firebaseStorageDownloadTokens;
-                console.log("Image was uploaded for EDITPAGE");
                 storeEditPage(formBody, imageUrl)
                     .then(function(response){
-                        console.log("response from store.editPage");
-                        console.log(response);
-                        // response.json();
-                        // response.json({recipeid: formBody.RecipeID});
                         res.status(200).json({
                             status: 'success',
                             data: Object.assign({}, bucketFile.metadata
                             ),
                             recipeid: formBody.RecipeID
                         })
-                        // response.json({recipeid: formBody.RecipeID})
-                        // res.status(200).json({
-                        //     status: 'success',
-                        //     data: Object.assign({}, bucketFile.metadata),
-                        //     recipeid: formBody.RecipeID
-                        // })
-                        // response.status(200).json(response);
                     }).catch(function(err){
-                    console.log("error with storeEditPage");
                     console.log(err);
                     res.sendStatus(404);
                 })
             }).catch(err=>{
-            console.log("error in bucketFile...");
             console.log(err);
             res.status(500).json({
                 status:'error',
@@ -276,35 +173,25 @@ app.put('/editPage', multer.single('file'), function(req, res){
             })
         })
     }else{
-        console.log("Image was NOT uploaded for EDITPAGE");
         storeEditPage(formBody, imageUrl)
             .then(function(response){
-                console.log("response from store.editPage");
-                console.log(response);
-                // response.json();
-                // response.json({recipeid: formBody.RecipeID});
                 res.status(200).json({
                     status: 'success',
                     recipeid: formBody.RecipeID
                 })
                 // response.status(200).json(response);
             }).catch(function(err){
-            console.log("error with store.editPage");
             console.log(err);
             res.sendStatus(404);
         })
     }
 });
 
-//!!!!!!!*****
-
 app.use('/', register);
 app.use('/', search);
 app.use('/', recipepage);
 app.use('/', favorites);
 app.use('/', creations);
-// app.use('/', editpage);
-
 
 app.listen(process.env.LOCAL_PORT || 8100, ()=> {
     console.log("Server running on http://localhost:8100/'")
@@ -315,8 +202,6 @@ app.listen(process.env.LOCAL_PORT || 8100, ()=> {
 //configure a strategy with passport.use
 passport.use(new LocalStrategy(
     function(username, password, done){
-        console.log("Within passport.use(localstrat).... what is username? " + username);
-        console.log(password);
         pool.query('SELECT * FROM accounts WHERE username= $1', [username], (error, user)=>{
             if(error){
                 return done(error);
@@ -327,8 +212,6 @@ passport.use(new LocalStrategy(
             //authenticate user entered username and password
             db.authenticate({username: username, password: password})
                 .then(function(response){
-                    console.log("do we make it into db.authenticate??");
-                    console.log(response);
                     if(!response){
                         //cannot find the user or the password does not match
                         return done(null, false);
@@ -346,15 +229,12 @@ passport.use(new LocalStrategy(
 //Passport will serialize and deserialize user instances to and from the session, here only the userID is serialized
 // to the session.
 passport.serializeUser(function(user, done){
-    console.log("is serialize being called?");
-    console.log(user.rows[0].username);
     done(null, user.rows[0].username);
 });
 
 //DeserializeUser will be invoked every subsequent request to deserialize the instance, providing it
 // the unique cookie identifier as credential
 passport.deserializeUser(function(username, done){
-    console.log("is deserialize being called?");
     pool.query('SELECT * FROM accounts WHERE username=$1', [username],  function(err, user){
         if(err){
             return done(err);
@@ -366,10 +246,6 @@ passport.deserializeUser(function(username, done){
 
 //===============================
 function storeForm(form, url){
-    console.log("Do we get to see what form is?");
-    // console.log(form);
-    // console.log(form.Creator);
-    //have to add in 'creator' as in the user who is creating the recipe into the insert of this pool.query later
     return pool.query('INSERT INTO recipes(creator, username, preptime, cooktime, servings, mealtype, recipetitle, ' +
         'description, ingredients, directions, image, creationtime) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, ' +
         '$11, current_timestamp)', [form.Creator, form.Username, form.PrepTime, form.CookTime, form.Servings,
@@ -378,11 +254,7 @@ function storeForm(form, url){
 }
 
 function storeEditPage(formData, url){
-    console.log("Inside editRecipe in store");
-    console.log(formData);
-    console.log(url);
     if(url === ''){
-        console.log("there is no file being uploaded");
         return pool.query('UPDATE recipes SET preptime=$1, cooktime=$2, servings=$3, mealtype=$4, recipetitle=$5, ' +
             'description=$6, ingredients=$7, directions=$8 WHERE recipeid=$9',
             [
@@ -397,7 +269,6 @@ function storeEditPage(formData, url){
                 formData.RecipeID
             ])
     }else{
-        console.log("file being uploaded");
         return pool.query('UPDATE recipes SET image=$1, preptime=$2, cooktime=$3, servings=$4, mealtype=$5, ' +
             'recipetitle=$6, description=$7, ingredients=$8, directions=$9 WHERE recipeid=$10',
             [
@@ -414,29 +285,7 @@ function storeEditPage(formData, url){
             ])
     }
 }
-
-// function setupImageFirebase(file, res){
-//     let token = uuid;
-//     let nameHash = crypto.randomBytes(20).toString('hex');
-//     let bucketFile = bucket.file(nameHash);
-//     console.log(token);
-//
-//     return bucketFile
-//         .save(Buffer.from(file.buffer), {metadata: { metadata: {firebaseStorageDownloadTokens: token}}})
-//         .then(()=>{
-//             console.log("inside bucketFile...");
-//             //IN regards to UUID the first submit takes the longest and the others are quick this is because UUID is not generating different tokens!!!!!!
-//             // console.log(bucketFile.metadata.metadata.firebaseStorageDownloadTokens);
-//             res.status(200).json({
-//                 status: 'success',
-//                 data: Object.assign({}, bucketFile.metadata
-//                 )
-//             })
-//         })
-// }
-
 function checkAuthentication(req, res, next){
-    console.log("CHECKING AUTHENTICATION");
     if(req.isAuthenticated()){
         next();
     }else{

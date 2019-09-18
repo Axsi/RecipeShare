@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Switch, Route, Link, BrowserRouter as Router} from "react-router-dom";
-import Header from './header_components/header';
 import HomePage from './homepage';
 import LoginPage from './loginpage';
 import RegisterPage from './registerpage';
@@ -16,7 +15,6 @@ import PrivateRoute from './privateroute';
 const routing = (
     <Router>
         <div>
-            {/*<Header />*/}
             <Route exact path="/" component={HomePage} />
             <Route path="/loginpage" component={LoginPage}/>
             <Route path="/registerpage" component={RegisterPage}/>
@@ -25,7 +23,6 @@ const routing = (
             <PrivateRoute path="/createrecipe" component={CreateRecipePage}/>
             <PrivateRoute path="/createdpage" component={CreatedPage}/>
             <PrivateRoute path="/editpage" component={EditPage}/>
-            {/*<Route path="/" component={CreateRecipePage}/>*/}
         </div>
     </Router>
 );

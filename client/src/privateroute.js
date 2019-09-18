@@ -9,18 +9,19 @@ function PrivateRoute({component: Component, ...rest}) {
         <Route
             {...rest}
         render={(props) =>
-        userAuth(props) === true ?
-            <Component {...props} /> :
+         userAuth(props) === true ?
+            <Component {...props} />:
             <Redirect to={{pathname: '/loginpage', state: {from: props.location}}}/>
          }
         />
         );
 }
- function userAuth(props){
-    console.log("inside userAuth");
-    console.log(props.location.username);
-    return (props.location.username !== '') && (props.location.username !== undefined) &&
-        (props.location.username !== null);
+function userAuth(props){
+    console.log(props);
+    console.log(sessionStorage);
+    return (sessionStorage.username !== '') && (sessionStorage.username !== undefined) &&
+        (sessionStorage.username !== null);
+
 }
 
 export default PrivateRoute;

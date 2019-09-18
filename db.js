@@ -21,7 +21,6 @@ const pool = new pg.Pool(config);
 pool.on('connect', () => {
     console.log('Connected to the database!');
 });
-//gotta test the character limit
 const createTables = async () =>{
     try{
         let accountRes = await pool.query(tables.accountTable);
@@ -60,8 +59,6 @@ function hashPassword(password){
         passwordHash: hashedPassword
     };
 }
-// return pool.query('INSERT INTO accounts(username, passwordhash, salt) VALUES($1, $2, $3)',
-//     [username, passwordHash, saltKey]
 
 function authenticate(loginData){
     //search database for user the username entered by the user
@@ -81,7 +78,6 @@ function authenticate(loginData){
             //username is found so we take the salt and password saved along with the username and
             //combine it with the user entered password to check if the password we have in our DB matches the user
             // entered one
-            //should change password to salt in database
             let hashedPassword = crypto.createHmac("sha256", response.rows[0].salt)
                 .update(loginData.password)
                 .digest("hex");

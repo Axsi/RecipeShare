@@ -2,20 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link, withRouter } from 'react-router-dom';
 import '../style/favorite.css';
-// import Heart from "../assets/icons8-heart-96.png";
 
 class Favorite extends React.Component{
     constructor(props){
         super(props);
 
     }
-//will have to make it so when logged in clicking favorite links to favorite list instead of sign in page
-    componentDidMount() {
-        console.log("componetDidMount for favorite button");
-        console.log(this.props.location.username);
-        console.log(this.props.location.userID);
-    }
-
     render(){
         return(
             <li className="Favorite-Button">

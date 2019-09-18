@@ -30,13 +30,11 @@
     padding: 0;
     margin: 20px 7px 20px 7px;
 }
-
+.Recipe-Article:hover{
+    opacity: .6;
+}
 .Recipe-Link{
     text-decoration: none;
-}
-
-.Recipe-Link:hover{
-    opacity: .6;
 }
 
 .Recipe-Image{

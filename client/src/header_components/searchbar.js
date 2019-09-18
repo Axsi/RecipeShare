@@ -1,7 +1,6 @@
 import React from 'react';
 import '../style/searchbar.css';
-import { Link, withRouter } from 'react-router-dom';
-// import Magnify from '../assets/icons8-search-30.png';
+import { withRouter } from 'react-router-dom';
 
 class SearchBar extends React.Component{
     constructor(props){
@@ -17,9 +16,6 @@ class SearchBar extends React.Component{
     handleChange(event){
         const name = event.target.name;
         const value = event.target.value;
-        // console.log(name);
-        // console.log(value);
-
         this.setState({
             [name]: value
         });
@@ -27,26 +23,16 @@ class SearchBar extends React.Component{
 
     handleSearch(event){
         event.preventDefault();
-        console.log("inside handleSearch");
-        // console.log(event);
         if((this.state.searchInput !== '')&&(this.state.searchInput !== null)&&(this.state.searchInput !== undefined)){
-            console.log("inside handlesearch conditional");
             let data = this.state;
             let fetchData = {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {'Content-Type': 'application/json;charset=utf-8'}
             };
-            console.log(fetchData);
             fetch('/search', fetchData)
                 .then(response=> response.json())
                 .then(data =>{
-                    console.log("back in searchbar.js");
-                    // console.log(data);
-                    console.log(data.rows);
-                    console.log(this.props.location.username);
-                    console.log(this.props.location.userID);
-                    //this push is not doing anything, maybe try link? redirect?
                     this.props.history.push({
                         pathname:"/", searchResult: data.rows,
                         username: this.props.location.username,
@@ -54,16 +40,13 @@ class SearchBar extends React.Component{
                         searchInput: this.state.searchInput
                     });
                 }).catch(err=>{
-                    console.log("error for searchbar's handleSubmit fetch");
-                    console.log(err);
-                })
+                console.log(err);
+            })
         }
     }
 
     checkEnter(event){
         if(event.keyCode === 13){
-            console.log("enter was pressed");
-            // console.log(event);
             this.handleSearch(event);
 
         }
