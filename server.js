@@ -193,8 +193,8 @@ app.use('/', recipepage);
 app.use('/', favorites);
 app.use('/', creations);
 
-app.listen(process.env.LOCAL_PORT || 8100, ()=> {
-    console.log("Server running on http://localhost:8100/'")
+app.listen(process.env.PORT || 8100, ()=> {
+    console.log("Server running on " + process.env.PORT)
 });
 
 //======= PassportJS ===========
