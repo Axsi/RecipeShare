@@ -1,6 +1,7 @@
 const env = require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
+const path=require('path');
 const uuidv4 = require('uuid/v4');
 const uuid = uuidv4();
 const crypto = require('crypto');
@@ -12,7 +13,6 @@ const session = require('express-session')({
 });
 const db = require('./db');
 const pool = db.pool;
-const path=require('path');
 
 //========= Firebase ==============
 
@@ -62,7 +62,7 @@ app.use(express.static(path.join(__dirname, 'client/build/client')));
 //
 app.get('/', function(req, res){
     // res.redirect('/index.html');
-    res.sendFile(path.join(__dirname,'client/build/clientpublic/index.html'), function(err){
+    res.sendFile(path.join(__dirname,'client/build/client/public/index.html'), function(err){
         if(err){
             res.status(500).send(err)
         }
