@@ -48,6 +48,7 @@ const favorites = require('./routes/favorites');
 const creations = require('./routes/createdpage');
 
 app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(session);
 //initialize returns a middle which must be called at the start of connect/express based apps
