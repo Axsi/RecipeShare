@@ -12,7 +12,7 @@ const config = {
     port: process.env.DB_PORT,
     max: process.env.DB_MAX,
     idleTimeoutMillis: process.env.DB_IDLE_TIMEOUT,
-    connectionString: process.env.DB_URL
+    connectionString: process.env.DATABASE_URL
 };
 
 const pool = new pg.Pool(config);

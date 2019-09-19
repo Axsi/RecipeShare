@@ -49,7 +49,7 @@ const favorites = require('./routes/favorites');
 const creations = require('./routes/createdpage');
 
 app.use(session({
-    store: new (require('connect-pg-simple')(session))({conString: 'postgres://alxldbyhsxvttw:bd66a712aac12f539f2ce24e4c4d7c7cbc12bf43c03989aacc75c6dd36d0be7f@ec2-54-235-86-101.compute-1.amazonaws.com:5432/dflolps1b5prke'}),
+    store: new (require('connect-pg-simple')(session))({conString: process.env.DATABASE_URL}),
     secret: 'omega',
     resave: false,
     saveUninitialized: false,
