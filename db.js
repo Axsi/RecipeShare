@@ -11,7 +11,8 @@ const config = {
     password: process.env.DB_PASSWORD,
     port: process.env.DB_PORT,
     max: process.env.DB_MAX,
-    idleTimeoutMillis: process.env.DB_IDLE_TIMEOUT
+    idleTimeoutMillis: process.env.DB_IDLE_TIMEOUT,
+    connectionString: process.env.DB_URL
 };
 
 const pool = new pg.Pool(config);

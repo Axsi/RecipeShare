@@ -49,8 +49,8 @@ const favorites = require('./routes/favorites');
 const creations = require('./routes/createdpage');
 
 app.use(session({
-    store: new (require('connect-pg-simple')(session))({conString: "postgres://admin:admin@localhost:5432/Recipe_Share"}),
-    secret: 'omega',
+    store: new (require('connect-pg-simple')(session))({conString: process.env.DB_URL}),
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {maxAge: 30 * 24 * 60 * 60 * 1000},
