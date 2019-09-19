@@ -16,7 +16,11 @@ router.post('/search', function(req, res){
 router.get('/recentRecipes', function(req, res){
     store.recentRecipes()
         .then(function(response){
-            res.status(200).json(response);
+            if(response === undefined){
+                res.status(200).json({});
+            }else{
+                res.status(200).json(response);
+            }
         }).catch(function(err){
             console.log(err);
             res.sendStatus(404);
