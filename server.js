@@ -8,9 +8,10 @@ const crypto = require('crypto');
 const app = express();
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const session = require('express-session')({
-    secret:'omega', resave: false, saveUninitialized: false
-});
+const session = require('express-session');
+// ({
+//     secret:'omega', resave: false, saveUninitialized: false
+// });
 const db = require('./db');
 const pool = db.pool;
 
@@ -47,10 +48,17 @@ const recipepage = require('./routes/recipepage');
 const favorites = require('./routes/favorites');
 const creations = require('./routes/createdpage');
 
+app.use(session({
+    store: new (require('connect-pg-simple')(session))({conString: "postgres://admin:admin@localhost:5432/Recipe_Share"}),
+    secret: 'omega',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {maxAge: 30 * 24 * 60 * 60 * 1000},
+}));
+
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-app.use(session);
 //initialize returns a middle which must be called at the start of connect/express based apps
 app.use(passport.initialize());
 
