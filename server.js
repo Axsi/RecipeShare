@@ -56,11 +56,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParser.json());
 
-app.use(express.static(path.join(__dirname+'client/build')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 // app.use(express.static(path.join(__dirname, '/client/src')));
 // app.set('views', __dirname + '/client/src');
 //
-app.get('/', function(req, res){
+app.get('*', function(req, res){
     // res.redirect('/index.html');
     res.sendFile(path.join(__dirname+'client/build/index.html'), function(err){
         if(err){
