@@ -19,7 +19,7 @@ const pool = db.pool;
 
 const firebase = require("firebase/app");
 const admin = require("firebase-admin");
-// const  serviceAccount = require(process.env.GOOGLE_APPLICATION_CREDENTIALS);
+const  serviceAccount = require(process.env.GOOGLE_APPLICATION_CREDENTIALS);
 const Multer = require('multer');
 
 const firebaseConfig = {
@@ -29,8 +29,8 @@ const firebaseConfig = {
     projectId: "recipeshare-c27e5",
     storageBucket: "recipeshare-c27e5.appspot.com",
     messagingSenderId: "710536044188",
-    appId: "1:710536044188:web:a523e3f4771b9ba3"
-
+    appId: "1:710536044188:web:a523e3f4771b9ba3",
+    credential: admin.credential.applicationDefault()
 };
 
 admin.initializeApp(firebaseConfig);
