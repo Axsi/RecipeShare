@@ -15,6 +15,7 @@ import PrivateRoute from './privateroute';
 const routing = (
     <Router>
         <div>
+            <Switch>
             <Route exact path="/" component={HomePage} />
             <Route path="/loginpage" component={LoginPage}/>
             <Route path="/registerpage" component={RegisterPage}/>
@@ -23,6 +24,7 @@ const routing = (
             <PrivateRoute path="/createrecipe" component={CreateRecipePage}/>
             <PrivateRoute path="/createdpage" component={CreatedPage}/>
             <PrivateRoute path="/editpage" component={EditPage}/>
+            </Switch>
         </div>
     </Router>
 );
