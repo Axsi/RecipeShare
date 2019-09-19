@@ -62,7 +62,7 @@ app.use(express.static(path.join(__dirname, 'client/build/static')));
 //
 app.get('/', function(req, res){
     // res.redirect('/index.html');
-    res.sendFile(path.join(__dirname,'client/build', 'index.html'), function(err){
+    res.sendFile(path.join(__dirname,'client/build/index.html'), function(err){
         if(err){
             res.status(500).send(err)
         }
