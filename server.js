@@ -47,6 +47,8 @@ const recipepage = require('./routes/recipepage');
 const favorites = require('./routes/favorites');
 const creations = require('./routes/createdpage');
 
+app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(bodyParser.json());
 app.use(session);
 //initialize returns a middle which must be called at the start of connect/express based apps
 app.use(passport.initialize());
@@ -54,9 +56,6 @@ app.use(passport.initialize());
 //if app is uses persistent login sessions, passport.session must be used. Returns middleware that reads a user out
 //of session if one is there, it will store the user in req.user
 app.use(passport.session());
-app.use(bodyParser.json());
-
-app.use(express.static(path.join(__dirname, 'client/build')));
 // app.use(express.static(path.join(__dirname, '/client/src')));
 // app.set('views', __dirname + '/client/src');
 //
