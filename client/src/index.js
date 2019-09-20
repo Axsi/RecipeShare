@@ -9,7 +9,6 @@ import CreateRecipePage from './create_recipe_page';
 import RecipePage from './recipepage';
 import CreatedPage from './createdpage'
 import EditPage from './editpage';
-// import * as serviceWorker from './serviceWorker';
 import PrivateRoute from './privateroute';
 
 const routing = (
@@ -34,4 +33,3 @@ ReactDOM.render(routing, document.getElementById('root'));
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-// serviceWorker.unregister();
