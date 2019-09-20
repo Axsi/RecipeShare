@@ -102,7 +102,6 @@ class CreateRecipeForm extends React.Component{
             };
             if(this.props.location.pathname !== "/editpage"){
                 fetchData.method = 'POST';
-                // console.log(fetchData);
                 fetch('/createRecipe', fetchData)
                     .then(data=>{
                         this.props.history.push({pathname:"/", username:this.state.Username,
@@ -312,5 +311,4 @@ class CreateRecipeForm extends React.Component{
         )
     }
 }
-
 export default withRouter(CreateRecipeForm);

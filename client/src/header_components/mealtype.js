@@ -41,5 +41,4 @@ class MealType extends React.Component{
         )
     }
 }
-
 export default withRouter(MealType);

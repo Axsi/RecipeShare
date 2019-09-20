@@ -1,5 +1,4 @@
 import React from 'react';
-// import {Component} from 'react';
 
 function menuButtons(Component){
     return class MenuButtons extends React.Component{
