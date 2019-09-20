@@ -20,7 +20,6 @@ const pool = new pg.Pool(config);
 //whenever the pool establishes a new client connection to the postgresql backend, it will emit the specified connect
 //event
 pool.on('connect', () => {
-    // console.log('Connected to the database!');
 });
 const createTables = async () =>{
     try{
