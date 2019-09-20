@@ -35,6 +35,7 @@ class RecipeList extends React.Component{
             this.setState({searchResult: this.props.location.searchResult,
                 propResult: this.props.location.searchResult});
         }
+
         if(this.state.propResult !== this.props.location.searchResult){
             fetch('/recentRecipes')
                 .then(response => response.json())
@@ -106,5 +107,4 @@ class RecipeList extends React.Component{
         )
     }
 }
-
 export default withRouter(RecipeList);

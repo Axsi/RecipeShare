@@ -8,16 +8,14 @@ function PrivateRoute({component: Component, ...rest}) {
         <Route
             {...rest}
         render={(props) =>
-         userAuth(props) === true ?
+         userAuth() === true ?
             <Component {...props} />:
             <Redirect to={{pathname: '/loginpage', state: {from: props.location}}}/>
          }
         />
         );
 }
-function userAuth(props){
-    // console.log(props);
-    // console.log(sessionStorage);
+function userAuth(){
     return (sessionStorage.username !== '') && (sessionStorage.username !== undefined) &&
         (sessionStorage.username !== null);
 

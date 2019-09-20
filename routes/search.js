@@ -30,9 +30,9 @@ router.get('/recentRecipes', function(req, res){
 router.get('/mealType/:selection', function(req, res){
     let input = req.params.selection;
     store.mealTypeRecipes(input)
-        .then(function (response) {
+        .then(function (response){
             res.status(200).json(response);
-        }).catch(function (err) {
+        }).catch(function (err){
             console.log(err);
             res.sendStatus(404);
         })

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Switch, Route, Link, BrowserRouter as Router} from "react-router-dom";
+import {Switch, Route, BrowserRouter as Router} from "react-router-dom";
 import HomePage from './homepage';
 import LoginPage from './loginpage';
 import RegisterPage from './registerpage';
