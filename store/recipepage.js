@@ -7,6 +7,6 @@ module.exports = {
         return pool.query('SELECT * FROM recipes where recipeid=$1', [recipeID])
     },
     deleteRecipe(recipeID){
-
+        return pool.query('DELETE FROM recipes where recipeid=$1',[recipeID])
     }
 };
