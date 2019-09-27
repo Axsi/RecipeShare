@@ -13,6 +13,7 @@ class RecipePage extends React.Component{
             recipeDirections:[]
         };
         this.addToFavorites = this.addToFavorites.bind(this);
+        this.deleteRecipe = this.deleteRecipe.bind(this);
 
     }
     componentDidMount() {
@@ -50,6 +51,9 @@ class RecipePage extends React.Component{
             console.log(error);
         })
     }
+    deleteRecipe(event){
+
+    }
     render(){
         return(
             <div className="Site-Content">
@@ -58,6 +62,13 @@ class RecipePage extends React.Component{
                     <div className="Recipe-Summary-Container">
                         <section className="Recipe-Summary">
                             <div className="Title-Container">
+                                {sessionStorage.username === this.state.recipeDetails.username ?
+                                <img className="Delete-Recipe"
+                                     onClick={this.deleteRecipe}
+                                     title="Delete recipe"
+                                     src="https://firebasestorage.googleapis.com/v0/b/recipeshare-c27e5.appspot.com/o/icons8-windows-metro-26.png?alt=media&token=797f2c43-4c03-4307-b5e9-e660ea439358"
+                                />
+                                : null}
                                 <h1 className="Recipe-Page-Title">{this.state.recipeDetails.recipetitle}</h1>
                                 {sessionStorage.username ?
                                     <img className="Registered-User-Options"
