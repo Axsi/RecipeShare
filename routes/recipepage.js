@@ -14,6 +14,12 @@ router.get('/getRecipe/:recipeid', function(req, res){
 });
 
 router.delete('/deleteRecipe', function(req, res){
-
+    store.deleteRecipe(req.body.recipeid)
+        .then(function(response){
+            res.status(200).json(response);
+        }).catch(function(err){
+            console.log(err);
+            res.sendStatus(404);
+    })
 });
 module.exports = router;
