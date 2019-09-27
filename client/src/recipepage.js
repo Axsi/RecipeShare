@@ -52,7 +52,21 @@ class RecipePage extends React.Component{
         })
     }
     deleteRecipe(event){
-
+        event.preventDefault();
+        console.log("delete recipe");
+        let data = {recipeid: this.props.match.params.recipeid};
+        let fetchData = {
+            method: 'DELETE',
+            body: JSON.stringify(data),
+            headers: {'Content-Type': 'application/json;charset=utf-8'}
+        };
+        fetch('/deleteRecipe', fetchData)
+            .then(response=> response.json())
+            .then(data=>{
+                console.log(data);
+            }).catch(error=>{
+                console.log(error);
+        })
     }
     render(){
         return(
