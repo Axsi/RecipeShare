@@ -34,6 +34,14 @@
 
 }
 
+.Delete-Recipe{
+
+}
+
+.Delete-Recipe:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
 
 .Registered-User-Options{
     max-height: 20px;
