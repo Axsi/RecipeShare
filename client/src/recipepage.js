@@ -61,36 +61,36 @@ class RecipePage extends React.Component{
                 <div className="Recipe-Page-Container">
                     <div className="Recipe-Summary-Container">
                         <section className="Recipe-Summary">
-                            <div className="Title-Container">
-                                {sessionStorage.username === this.state.recipeDetails.username ?
+                            <h1 className="Recipe-Page-Title">{this.state.recipeDetails.recipetitle}</h1>
+                            <div className="Recipe-Options">
+                            {sessionStorage.username === this.state.recipeDetails.username ?
                                 <img className="Delete-Recipe"
                                      onClick={this.deleteRecipe}
                                      title="Delete recipe"
                                      src="https://firebasestorage.googleapis.com/v0/b/recipeshare-c27e5.appspot.com/o/icons8-windows-metro-26.png?alt=media&token=797f2c43-4c03-4307-b5e9-e660ea439358"
                                 />
                                 : null}
-                                <h1 className="Recipe-Page-Title">{this.state.recipeDetails.recipetitle}</h1>
-                                {sessionStorage.username ?
+                            {sessionStorage.username ?
+                                <img className="Registered-User-Options"
+                                     onClick={this.addToFavorites}
+                                     title="Add to favorites"
+                                     src="https://firebasestorage.googleapis.com/v0/b/recipeshare-c27e5.appspot.com/o/icons8-plus-24.png?alt=media&token=dbddc595-5dd4-43d2-9e6e-9bb227552361"
+                                />
+                                : null}
+                            {sessionStorage.username === this.state.recipeDetails.username ?
+                                <Link to={{
+                                    pathname:"/editpage",
+                                    username: sessionStorage.username,
+                                    userID: sessionStorage.userID,
+                                    recipeDetails: this.state.recipeDetails
+                                }}>
                                     <img className="Registered-User-Options"
-                                         onClick={this.addToFavorites}
-                                         title="Add to favorites"
-                                         src="https://firebasestorage.googleapis.com/v0/b/recipeshare-c27e5.appspot.com/o/icons8-plus-24.png?alt=media&token=dbddc595-5dd4-43d2-9e6e-9bb227552361"
+                                         id="Edit-Your-Recipe"
+                                         title="Edit your recipe"
+                                         src={"https://firebasestorage.googleapis.com/v0/b/recipeshare-c27e5.appspot.com/o/icons8-edit-40.png?alt=media&token=8b38d508-1011-4c65-b017-2ca5248bfdd6"}
                                     />
-                                    : null}
-                                {sessionStorage.username === this.state.recipeDetails.username ?
-                                    <Link to={{
-                                        pathname:"/editpage",
-                                        username: sessionStorage.username,
-                                        userID: sessionStorage.userID,
-                                        recipeDetails: this.state.recipeDetails
-                                    }}>
-                                        <img className="Registered-User-Options"
-                                             id="Edit-Your-Recipe"
-                                             title="Edit your recipe"
-                                             src={"https://firebasestorage.googleapis.com/v0/b/recipeshare-c27e5.appspot.com/o/icons8-edit-40.png?alt=media&token=8b38d508-1011-4c65-b017-2ca5248bfdd6"}
-                                        />
-                                    </Link>
-                                    : null}
+                                </Link>
+                                : null}
                             </div>
                             <p>
                                 <span className="Recipe-By">Recipe by </span>

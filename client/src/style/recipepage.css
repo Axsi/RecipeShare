@@ -16,26 +16,27 @@
 
 .Recipe-Summary p{
     text-align: center;
-    margin-right: 45px;
 }
 
-.Title-Container{
+.Recipe-Options{
     display:flex;
     justify-content: center;
     width: 100%;
 }
 
 .Recipe-Page-Title{
-    margin: 0px 7px 0px 0px;
+    margin: 0;
     text-align: center;
     color:#2d2d2d;
     font-size: 25px;
-    width: 600px;
+    width: 100%;
 
 }
 
 .Delete-Recipe{
-
+    width: 17px;
+    height: 19px;
+    margin-right: 2px;
 }
 
 .Delete-Recipe:hover{
@@ -54,7 +55,7 @@
 }
 
 #Edit-Your-Recipe{
-    float: right;
+    /*float: right;*/
     max-height: 17px !important;
     max-width: 17px !important;
     margin: 2px 0px 0px 3px;
