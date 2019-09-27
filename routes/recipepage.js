@@ -13,4 +13,7 @@ router.get('/getRecipe/:recipeid', function(req, res){
 
 });
 
+router.delete('/deleteRecipe', function(req, res){
+
+});
 module.exports = router;
