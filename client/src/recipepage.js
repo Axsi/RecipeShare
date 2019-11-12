@@ -21,6 +21,7 @@ class RecipePage extends React.Component{
         fetch('/getRecipe/' + recipeid)
             .then(response=> response.json())
             .then(data=>{
+                //split the entered ingredients and directions by **, then filter out the array elements that are not ""
                 data.rows[0].ingredients = data.rows[0].ingredients.split('**');
                 data.rows[0].directions = data.rows[0].directions.split('**');
                 data.rows[0].ingredients = data.rows[0].ingredients.filter(i => i !== "");

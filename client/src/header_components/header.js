@@ -47,7 +47,7 @@ class Header extends React.Component{
             this.setState({role: this.props.location.data})
         }
     }
-
+//these below comps make use of HOC components menus and menubuttons, they use very similiar functions so i just used HOC
     render(){
         const browseComp = (props)=>{
             return (
@@ -121,10 +121,12 @@ class Header extends React.Component{
                 </div>
             )
         };
+        //HOC for menus and menubuttons
         const Browse = menuButtons(browseComp);
         const UserButton = menuButtons(userComp);
         const BrowseMenu = menus(browseMenuComp);
         const UserMenu = menus(userMenuComp);
+        //<Can /> to determine user or guest, if role is determined by if the one that has the specified perform action,
         return(
             <div className="Header-Container">
                 <Can

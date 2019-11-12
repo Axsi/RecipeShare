@@ -157,6 +157,8 @@ class CreateRecipeForm extends React.Component{
         return filename.split('.').pop();
     }
 
+    //on handleSubmit to create a recipe, we want to make sure all the necessary inputs are filled by the user
+    //checkValue makes sure that the total 11 inputs that need to be filled in are done before submitting to DB
     checkValue(){
         let states = Object.keys(this.state);
         let count = 11;

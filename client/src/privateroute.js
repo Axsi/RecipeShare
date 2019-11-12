@@ -2,7 +2,7 @@ import React from 'react';
 import {Component} from 'react';
 import {Route, Redirect} from 'react-router-dom';
 
-
+//essentially if userAuth is true, we put in the component param that was passed into the Component position or get redirected to loginpage
 function PrivateRoute({component: Component, ...rest}) {
     return(
         <Route
