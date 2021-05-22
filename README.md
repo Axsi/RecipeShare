@@ -1,7 +1,6 @@
 # RecipeShare
 RecipeShare project is my attempt at making something similar to allrecipes.com. It is meant to allow users to share and
-teach their recipes to other individuals. The project is hosted on a free version of Heroku at 
-https://guarded-fjord-99394.herokuapp.com/
+teach their recipes to other individuals.
 
 ## Screenshot
 ![alt text](client/src/assets/Screenshot%20(67).png)
